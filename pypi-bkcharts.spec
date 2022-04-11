@@ -4,7 +4,7 @@
 #
 Name     : pypi-bkcharts
 Version  : 0.2
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/8f/bf/f4975a10ce859da55e17c16fff45159f224344a6220e79c528ab288d0720/bkcharts-0.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/8f/bf/f4975a10ce859da55e17c16fff45159f224344a6220e79c528ab288d0720/bkcharts-0.2.tar.gz
 Summary  : High level chart types built on top of Bokeh
@@ -58,7 +58,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641507937
+export SOURCE_DATE_EPOCH=1649720016
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
