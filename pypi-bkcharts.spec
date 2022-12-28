@@ -4,7 +4,7 @@
 #
 Name     : pypi-bkcharts
 Version  : 0.2
-Release  : 11
+Release  : 12
 URL      : https://files.pythonhosted.org/packages/8f/bf/f4975a10ce859da55e17c16fff45159f224344a6220e79c528ab288d0720/bkcharts-0.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/8f/bf/f4975a10ce859da55e17c16fff45159f224344a6220e79c528ab288d0720/bkcharts-0.2.tar.gz
 Summary  : High level chart types built on top of Bokeh
@@ -16,6 +16,9 @@ Requires: pypi-bkcharts-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : pypi(numpy)
 BuildRequires : pypi(six)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 No detailed description available
@@ -61,15 +64,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656361398
+export SOURCE_DATE_EPOCH=1672259628
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -86,7 +89,7 @@ popd
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-bkcharts
-cp %{_builddir}/bkcharts-0.2/LICENSE.txt %{buildroot}/usr/share/package-licenses/pypi-bkcharts/6b22af92424fc948d99a21b8a99a5306fe67ce1b
+cp %{_builddir}/bkcharts-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/pypi-bkcharts/6b22af92424fc948d99a21b8a99a5306fe67ce1b || :
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
